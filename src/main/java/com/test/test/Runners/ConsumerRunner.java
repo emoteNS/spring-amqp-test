@@ -7,15 +7,12 @@ import org.springframework.context.ConfigurableApplicationContext;
 /**
  * Created by enrique on 17/07/17.
  */
-public class ConsumerRunner implements CommandLineRunner {
-    @Autowired
-    private ConfigurableApplicationContext ctx;
-
+public class ConsumerRunner implements CommandLineRunner {;
     @Override
     public void run(String [] arg0) throws Exception {
         System.out.println("Consumer Started");
 
-        Thread.sleep(120000L);
-        ctx.close();
+        for(;;)
+            Thread.sleep(300000L);
     }
 }
