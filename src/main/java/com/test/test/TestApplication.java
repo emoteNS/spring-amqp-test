@@ -12,29 +12,15 @@ import org.springframework.context.annotation.Profile;
 @SpringBootApplication
 @EnableAutoConfiguration
 public class TestApplication {
-
-    @Profile("usage_message")
-    @Bean
-    public CommandLineRunner usage(){
-        return new CommandLineRunner() {
-            @Override
-            public void run(String... strings) throws Exception {
-                System.out.println("This app uses Spring Profiles to control its behavior.\n");
-                        System.out.println("Sample usage: java -jar rabbit-tutorials.jar" +
-                                " --spring.profiles.active=hello-world,sender");
-            }
-        };
-    }
-
     @Profile("receiver")
     @Bean
-    public CommandLineRunner tutorial(){
+    public CommandLineRunner tutorial() {
         return new ConsumerRunner();
     }
 
     @Profile("sender")
     @Bean
-    public CommandLineRunner sender(){
+    public CommandLineRunner sender() {
         return new ProducerRunner();
     }
 
