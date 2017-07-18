@@ -17,19 +17,12 @@ import org.springframework.messaging.handler.annotation.support.DefaultMessageHa
 /**
  * Created by enrique on 17/07/17.
  */
-@Profile({"tut1", "hello-world"})
 @Configuration
 public class Config implements RabbitListenerConfigurer{
 
     @Bean
     public Queue hello(){
         return new Queue("animals");
-    }
-
-    @Profile("receiver")
-    @Bean
-    public Consumer receiver(){
-        return new Consumer();
     }
 
     @Bean
@@ -43,17 +36,17 @@ public class Config implements RabbitListenerConfigurer{
     }
 
     @Bean
-    public DefaultMessageHandlerMethodFactory messageHandlerMethodFactory() {
-        DefaultMessageHandlerMethodFactory factory = new DefaultMessageHandlerMethodFactory();
-        factory.setMessageConverter(consumerJackson2MessageConverter());
-        return factory;
-    }
-
-    @Bean
     public RabbitTemplate rabbitTemplate(final ConnectionFactory connectionFactory) {
         final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMessageConverter(producerJackson2MessageConverter());
         return rabbitTemplate;
+    }
+
+    @Bean
+    public DefaultMessageHandlerMethodFactory messageHandlerMethodFactory() {
+        DefaultMessageHandlerMethodFactory factory = new DefaultMessageHandlerMethodFactory();
+        factory.setMessageConverter(consumerJackson2MessageConverter());
+        return factory;
     }
 
     @Override
