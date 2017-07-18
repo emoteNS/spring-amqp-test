@@ -1,5 +1,6 @@
-package com.test.test.tut1;
+package com.test.test.Config;
 
+import com.test.test.Config.Management.Consumer;
 import org.springframework.amqp.rabbit.annotation.RabbitListenerConfigurer;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -18,24 +19,17 @@ import org.springframework.messaging.handler.annotation.support.DefaultMessageHa
  */
 @Profile({"tut1", "hello-world"})
 @Configuration
-public class Tut1Config implements RabbitListenerConfigurer{
+public class Config implements RabbitListenerConfigurer{
 
     @Bean
     public Queue hello(){
-        return new Queue("hello");
-    }
-
-    @Bean
-    public RabbitTemplate rabbitTemplate(final ConnectionFactory connectionFactory) {
-        final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
-        rabbitTemplate.setMessageConverter(producerJackson2MessageConverter());
-        return rabbitTemplate;
+        return new Queue("animals");
     }
 
     @Profile("receiver")
     @Bean
-    public Tut1Receiver receiver(){
-        return new Tut1Receiver();
+    public Consumer receiver(){
+        return new Consumer();
     }
 
     @Bean
@@ -53,6 +47,13 @@ public class Tut1Config implements RabbitListenerConfigurer{
         DefaultMessageHandlerMethodFactory factory = new DefaultMessageHandlerMethodFactory();
         factory.setMessageConverter(consumerJackson2MessageConverter());
         return factory;
+    }
+
+    @Bean
+    public RabbitTemplate rabbitTemplate(final ConnectionFactory connectionFactory) {
+        final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
+        rabbitTemplate.setMessageConverter(producerJackson2MessageConverter());
+        return rabbitTemplate;
     }
 
     @Override

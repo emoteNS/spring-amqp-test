@@ -1,12 +1,14 @@
 package com.test.test.Models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 
 /**
  * Created by enrique on 17/07/17.
  */
+@Component
 public class Animal implements Serializable{
     private int age;
     private String specie;

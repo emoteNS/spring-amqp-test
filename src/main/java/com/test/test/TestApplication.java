@@ -1,19 +1,14 @@
 package com.test.test;
 
-import org.springframework.amqp.rabbit.annotation.RabbitListenerConfigurer;
-import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.rabbit.listener.RabbitListenerEndpointRegistrar;
-import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import com.test.test.Runners.ConsumerRunner;
+import com.test.test.Runners.ProducerRunner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-@EnableScheduling
 public class TestApplication {
 
     @Profile("usage_message")
@@ -29,10 +24,16 @@ public class TestApplication {
         };
     }
 
-    @Profile("!usage_message")
+    @Profile("receiver")
     @Bean
     public CommandLineRunner tutorial(){
-        return new TestApplicationRunner();
+        return new ConsumerRunner();
+    }
+
+    @Profile("sender")
+    @Bean
+    public CommandLineRunner sender(){
+        return new ProducerRunner();
     }
 
     public static void main(String[] args) {
