@@ -1,5 +1,6 @@
 package com.test.test;
 
+import com.test.test.tut1.Tut1Sender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -16,13 +17,17 @@ public class TestApplicationRunner implements CommandLineRunner {
     @Autowired
     private ConfigurableApplicationContext ctx;
 
+    @Autowired
+    Tut1Sender sender;
+
     @Override
     public void run(String [] arg0) throws Exception {
 
-        int times = (arg0.length == 0? 5: Integer.parseInt(arg0[0]))*1000;
+        int times = arg0.length == 0? 20: Integer.parseInt(arg0[0]);
 
-        System.out.println("Ready ... running for " + times/1000 + " times");
-        Thread.sleep(times);
+        System.out.println("Ready ... running");
+
+        sender.send(times);
         ctx.close();
     }
 

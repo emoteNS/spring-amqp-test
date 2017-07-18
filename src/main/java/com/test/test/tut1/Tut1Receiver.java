@@ -1,5 +1,6 @@
 package com.test.test.tut1;
 
+import com.test.test.Models.Animal;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 
@@ -9,7 +10,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 @RabbitListener(queues = "hello")
 public class Tut1Receiver {
     @RabbitHandler
-    public void receive(String in){
-        System.out.println(" [x] Received '" + in + "'");
+    public void receive(Animal in){
+        System.out.println(" [x] Received '" + in.toString() + "'");
     }
 }
