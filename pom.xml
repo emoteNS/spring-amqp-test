@@ -58,7 +58,7 @@
                 <version>0.4.5</version>
                 <configuration>
                     <imageName>exampletwo</imageName>
-                    <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
+
                     <baseImage>java</baseImage>
 					<exposes>8000</exposes>
                     <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
