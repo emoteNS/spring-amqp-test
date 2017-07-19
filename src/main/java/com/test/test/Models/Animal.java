@@ -1,23 +1,18 @@
 package com.test.test.Models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.stereotype.Component;
-
 import java.io.Serializable;
 
 /**
- * Created by enrique on 17/07/17.
+ *
  */
-@Component
-public class Animal implements Serializable{
+public class Animal implements Serializable {
     private int age;
     private String specie;
 
-    public Animal(){
-
+    public Animal() {
     }
 
-    public Animal(@JsonProperty int age, String specie){
+    public Animal(int age, String specie) {
         this.age = age;
         this.specie = specie;
     }
@@ -39,7 +34,7 @@ public class Animal implements Serializable{
     }
 
     @Override
-    public String toString(){
-        return "Animal{ age: "+ age +", specie: "+ specie +"}";
+    public String toString() {
+        return String.format("Animal(age: %s, specie: %s)", age, specie);
     }
 }

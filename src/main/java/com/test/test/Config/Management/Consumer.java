@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by enrique on 17/07/17.
+ *
  */
 @Profile("receiver")
 @Component
@@ -20,6 +20,6 @@ public class Consumer {
 
     @RabbitHandler
     public void receive(Animal in){
-        log.info(" [x] Received '" + in.toString() + "'");
+        log.info(" [x] Received '{}'", in);
     }
 }

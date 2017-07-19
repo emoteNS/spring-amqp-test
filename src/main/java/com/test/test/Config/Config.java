@@ -13,7 +13,7 @@ import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 import org.springframework.messaging.handler.annotation.support.DefaultMessageHandlerMethodFactory;
 
 /**
- * Created by enrique on 17/07/17.
+ *
  */
 @Configuration
 public class Config implements RabbitListenerConfigurer{

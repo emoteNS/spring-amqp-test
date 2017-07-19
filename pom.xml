@@ -22,7 +22,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-        <docker.image.prefix>springio</docker.image.prefix>
+        <docker.image.prefix>skt</docker.image.prefix>
 	</properties>
 
 	<dependencies>
@@ -57,8 +57,7 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>0.4.5</version>
                 <configuration>
-                    <imageName>exampletwo</imageName>
-
+                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
                     <baseImage>java</baseImage>
 					<exposes>8000</exposes>
                     <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>

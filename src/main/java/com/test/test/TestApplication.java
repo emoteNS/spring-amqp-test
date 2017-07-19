@@ -1,29 +1,21 @@
 package com.test.test;
 
-import com.test.test.Runners.ConsumerRunner;
-import com.test.test.Runners.ProducerRunner;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Profile;
 
+/**
+ * <h1>TestApplication</h1>
+ * The TestApplication implements a message queue
+ * <p>Producer<p/> and <p>Consumer</p> using rabbitmq.
+ *
+ * The application uses profiles to specify the desired
+ * behavior.
+ *
+ * This application may be executed inside a Docker
+ * container (see pom file to check details on docker plugin)
+ */
 @SpringBootApplication
-@EnableAutoConfiguration
 public class TestApplication {
-    @Profile("receiver")
-    @Bean
-    public CommandLineRunner tutorial() {
-        return new ConsumerRunner();
-    }
-
-    @Profile("sender")
-    @Bean
-    public CommandLineRunner sender() {
-        return new ProducerRunner();
-    }
-
     public static void main(String[] args) {
         SpringApplication.run(TestApplication.class, args);
     }
